@@ -1,0 +1,19 @@
+name: Deploy pipelines
+
+on:
+  push:
+    paths:
+      - ".github/workflows/deploy.yml"
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Set environment
+      run: |
+        echo "ENVIRONMENT=$(. echo.sh ${{ github.ref }})" >> $GITHUB_ENV
+    - name: Echo environment
+      run: |
+        echo $ENVIRONMENT
