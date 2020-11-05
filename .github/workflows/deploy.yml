@@ -13,12 +13,14 @@ jobs:
     - name: Set environment
       run: |
         echo "ENVIRONMENT=$(. echo.sh ${{ github.ref }})" >> $GITHUB_ENV
-    - name: Echo environment
-      run: |
-        echo $ENVIRONMENT
     - name: Set environment with env variable
       run: |
         echo "OTHER=$(. echo.sh $ENVIRONMENT)" >> $GITHUB_ENV
     - name: Set environment with env variable
       run: |
         echo "ANOTHER=$ENVIRONMENT" >> $GITHUB_ENV
+    - name: Echo environment
+      run: |
+        echo $ENVIRONMENT
+        echo $OTHER
+        echo $ANOTHER
